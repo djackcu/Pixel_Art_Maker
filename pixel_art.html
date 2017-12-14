@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pixel Art</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="pixel_art.js"></script>
+
+</head>
+<body>
+	<h1 class="nameMain">Pixel Art Maker</h1>
+	<h2 class="nameChoose">Choose size</h2>
+	<form id="sizePicker">
+		Select height:
+		<input type="number" name="height" id="input_height" min="1" value="1">
+		Select width:
+		<input type="number" name="width" id="input_width" min= "1" value="1">
+		<input type="submit" id="input_submit">
+	</form>
+	<h2 class="nameChoose">Choose color</h2>
+	<input type="color" name="color" id="colorPicker">
+
+	<table id="pixel_canvas"></table>
+</body>
+</html>
