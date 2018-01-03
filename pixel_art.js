@@ -2,8 +2,10 @@ $(document).ready(function() {
 	var inputColor,
 		inputHeight,
 		inputWidth,
-		canvas = $('#pixel_canvas'),
-		sizePicker = $('#sizePicker');
+		canvas = $('#pixelCanvas'),
+		sizePicker = $('#sizePicker'),
+		isPaint = false;
+
 
 // Select color input
 	function colorPick(){
@@ -19,14 +21,39 @@ $(document).ready(function() {
 		return {'heigth':inputHeight , 'width' : inputWidth};
 	}
 
+//Start paint
+	function startPaint(el) {
+		isPaint = true;
+		event.preventDefault(); //Prevent drag event
+		paint(el);
+	}
+
+//Stop paint 
+	function stopPaint(el) {
+		isPaint = false;
+	}
+
+//Paint cell
+	function paint(el) {
+		if (!isPaint) {
+			return;
+		}else {
+			const elem = $(el.target);
+			var newColor = colorPick();
+			elem.css('background', newColor);
+		}
+	}
+
 // Clean old grid and create e new
 	function makeGrid(h,w) {
 			canvas.empty(); // clean old grid
 
 			for (var i = 0; i < h; i++) {
-				const row = $('<tr></tr>');
+				const row = $('<tr class="row"></tr>');
 				for (var j = 0; j < w; j++) {
-					const cell = $('<td id="'+i+','+j+'"></td>');
+					const cell = $('<td class="cell" id="'+i+','+j+'"></td>');
+					cell.on('mousedown', startPaint);
+					cell.on('mouseenter', paint);
 					row.append(cell);
 				}			
 				canvas.append(row);	
@@ -42,7 +69,5 @@ $(document).ready(function() {
 		});
 
 //When a cell is clicked will painted with color selected
-	canvas.on('click', 'td', function(event) {
-		$(this).css('background', colorPick());
-	});
+	canvas.on('mouseup', stopPaint);
 });
