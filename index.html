@@ -10,25 +10,28 @@
 </head>
 <body>
 	<h1 class="nameMain">Pixel Art Maker</h1>
-	<div class="mainTool">
-		<div class="tool">						
-			<form id="sizePicker">
-				<span class="labels">Size</span>
-				<label for="height">H:</label>
-				<input class="sizeVal" type="number" name="height" id="input_height" step="10" min="10" max="100" value="10">
-				<label for="width">W:</label>
-				<input class="sizeVal" type="number" name="width" id="input_width" step="10" min="10" max="150" value="10">
-				<input class="sizeVal" type="submit" id="input_submit">
-			</form>
-		</div>	
-		<div class="tool">
-			<label for="colorPicker">Color:</label>
-			<input type="color" name="color" id="colorPicker">
-		</div>
 
+	<div class="frameApp">
+		<div class="mainTool">
+			<div class="tool">						
+				<form id="sizePicker">
+					<span class="labels">Size</span>
+					<label for="height">H:</label>
+					<input class="sizeVal" type="number" name="height" id="input_height" step="10" min="10" max="100" value="10">
+					<label for="width">W:</label>
+					<input class="sizeVal" type="number" name="width" id="input_width" step="10" min="10" max="150" value="10">
+					<input class="sizeVal" type="submit" id="input_submit" value="New">
+				</form>
+			</div>	
+			<div class="tool">
+				<label for="colorPicker">Color:</label>
+				<input type="color" name="color" id="colorPicker">
+			</div>
+		</div>
+		<div class="frameCanvas">
+			<table id="pixelCanvas"></table>
+		</div>
 	</div>
-	<div class="frameCanvas">
-	<table id="pixelCanvas"></table>
-	</div>
+	<span id="author">by Dieter Jackson</span>
 </body>
 </html>

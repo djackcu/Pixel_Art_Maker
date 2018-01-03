@@ -3,18 +3,21 @@ body {
 }
 
 .nameMain {
-    font-size: 70px;
+    font-size: 2em;
     margin: 0.2em;
     font-family: 'Berkshire Swash', cursive;
     text-align: right;
 }
 
-#pixelCanvas,
-.mainTool {
+.frameApp,
+#pixelCanvas {
     border: 1px solid black;
     padding: 0;
 }
 
+.mainTool {
+    border-bottom: 1px solid black;
+}
 #pixelCanvas {
     border-collapse: collapse;
     margin: 0 auto;
@@ -50,13 +53,13 @@ body {
     display: inline-block;
     margin: 0 2em;
     border-radius: 2px;
-    background-color: rgb(239, 239, 239);
+    
 }
 
 .mainTool {
     text-align: left;
     width: 100%;
-    border-radius: 5px;
+    background-color: rgb(239, 239, 239);
 }
 .frameCanvas {
     border: 2px solid grey;
