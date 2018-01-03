@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var inputColor,
 		inputHeight,
 		inputWidth,
-		pixelCanvas = $('#pixel_canvas'),
+		canvas = $('#pixel_canvas'),
 		sizePicker = $('#sizePicker');
 
 // Select color input
@@ -21,18 +21,16 @@ $(document).ready(function() {
 
 // Clean old grid and create e new
 	function makeGrid(h,w) {
-			pixelCanvas.empty(); // clean old grid
+			canvas.empty(); // clean old grid
 
 			for (var i = 0; i < h; i++) {
-				var row = $('<tr></tr>');
-				pixelCanvas.append(row);
+				const row = $('<tr></tr>');
+				for (var j = 0; j < w; j++) {
+					const cell = $('<td id="'+i+','+j+'"></td>');
+					row.append(cell);
+				}			
+				canvas.append(row);	
 			}
-
-			$('tr').each(function(index, el) {
-				for (var i = 0; i < w; i++) {
-					$(el).append('<td></td>');
-				}				
-			});
 	}		
 
 //When size is submitted by the user, call makeGrid()
@@ -44,7 +42,7 @@ $(document).ready(function() {
 		});
 
 //When a cell is clicked will painted with color selected
-	pixelCanvas.on('click', 'td', function(event) {
+	canvas.on('click', 'td', function(event) {
 		$(this).css('background', colorPick());
 	});
 });
