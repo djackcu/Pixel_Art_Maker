@@ -68,6 +68,6 @@ $(document).ready(function() {
 			event.preventDefault();
 		});
 
-//When a cell is clicked will painted with color selected
+//Listen event to stop paint
 	canvas.on('mouseup', stopPaint);
 });
