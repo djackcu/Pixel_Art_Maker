@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-color: #282828;
+    background-color: #333;
 }
 
 .nameMain {
@@ -8,19 +8,19 @@ body {
     margin: 0.2em;
     font-family: 'Berkshire Swash', cursive;
     text-align: right;
-    color: silver;
+    color: #ccc;
 }
 
 .frameApp,
 #pixelCanvas {
-    border: 1px solid black;
+    border: 1px solid #000;
     padding: 0;
 }
 
 #pixelCanvas {
     border-collapse: collapse;
     margin: 0 auto;
-    background-color: white;
+    background-color: #fff;
 }
 .row,
 .cell {
@@ -46,7 +46,7 @@ body {
 
 .labels {
     margin-right: 1em;
-    color: #FFF;
+    color: #fff;
 }
 
 .tool {
@@ -57,17 +57,17 @@ body {
 .mainTool {
     text-align: left;
     width: 100%;
-    background-color: #3B3B3B;
-    border-bottom: 1px solid black;
+    background-color: #444;
+    border-bottom: 1px solid #000;
 }
 .frameCanvas {    
     padding: 5px;
-    background-color: grey;    
+    background-color: #777;    
 }
 .frameApp {
     border-radius: 5px;
-    border: 2px solid grey;
+    border: 2px solid #777;
 }
 #author {
-    color:silver;
+    color:#ccc;
 }
