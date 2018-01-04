@@ -70,4 +70,6 @@ $(document).ready(function() {
 
 //Listen event to stop paint
 	canvas.on('mouseup', stopPaint);
+
+	makeGrid(30, 30);
 });
