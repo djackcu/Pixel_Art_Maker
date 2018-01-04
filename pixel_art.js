@@ -18,7 +18,6 @@ $(document).ready(function() {
 	function sizePick(){
 		inputHeight = $('#input_height').val();
 		inputWidth = $('#input_width').val();
-		return {'heigth':inputHeight , 'width' : inputWidth};
 	}
 
 //Start paint
@@ -44,16 +43,25 @@ $(document).ready(function() {
 		}
 	}
 
+//Erase cell
+	function eraseCell(el) {
+		const elem = $(el.target);
+		var newColor = '#fff';
+		elem.css('background', newColor);
+		event.preventDefault();
+	}
+
 // Clean old grid and create e new
-	function makeGrid(h,w) {
+	function makeGrid() {
 			canvas.empty(); // clean old grid
 
-			for (var i = 0; i < h; i++) {
+			for (var i = 0; i < inputHeight; i++) {
 				const row = $('<tr class="row"></tr>');
-				for (var j = 0; j < w; j++) {
+				for (var j = 0; j < inputWidth; j++) {
 					const cell = $('<td class="cell" id="'+i+','+j+'"></td>');
 					cell.on('mousedown', startPaint);
 					cell.on('mouseenter', paint);
+					cell.on('contextmenu',eraseCell);
 					row.append(cell);
 				}			
 				canvas.append(row);	
@@ -64,12 +72,14 @@ $(document).ready(function() {
 	sizePicker.submit(function(event) {
 			/* Act on the event */
 			var sizePicked = sizePick();
-			makeGrid(sizePicked.heigth, sizePicked.width);
+			makeGrid();
 			event.preventDefault();
 		});
 
 //Listen event to stop paint
 	canvas.on('mouseup', stopPaint);
 
-	makeGrid(30, 30);
+//Show an initial grid
+	sizePick();
+	makeGrid();
 });
