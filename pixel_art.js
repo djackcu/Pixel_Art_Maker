@@ -1,19 +1,20 @@
 $(document).ready(function() {
-	var inputColor,
+	let inputColor,
 		inputHeight,
 		inputWidth,
-		canvas = $('#pixelCanvas'),
-		sizePicker = $('#sizePicker'),
 		isPaint = false;
+	const canvas = $("#pixelCanvas"),
+		sizePicker = $("#sizePicker");
 
+//Show an initial grid
+	sizePick();
+	makeGrid();
 
 // Select color input
 	function colorPick(){
 		inputColor = $('#colorPicker').val();
-		return inputColor;
 	}
 	
-
 // Select size input
 	function sizePick(){
 		inputHeight = $('#input_height').val();
@@ -21,47 +22,56 @@ $(document).ready(function() {
 	}
 
 //Start paint
-	function startPaint(el) {
-		isPaint = true;
-		event.preventDefault(); //Prevent drag event
-		paint(el);
+	function startPaint(ev) {
+		ev.preventDefault(); //prevent drag
+		const elem = $(ev.target);
+		    switch (ev.which) {
+		        case 1:
+		        	isPaint = true;
+		            colorPick();		            
+		            break;
+		        case 2:
+		            isPaint = false;
+		            break;
+		        case 3:
+		        	isPaint = true;
+		            inputColor= '#fff';
+		            break;
+		        default:
+		            isPaint = false;
+			};		
+		paint(ev);
 	}
 
 //Stop paint 
-	function stopPaint(el) {
-		isPaint = false;
+	function stopPaint(ev) {
+		ev.preventDefault();
+		isPaint = false;		
 	}
 
 //Paint cell
-	function paint(el) {
+	function paint(ev) {
 		if (!isPaint) {
 			return;
 		}else {
-			const elem = $(el.target);
-			var newColor = colorPick();
-			elem.css('background', newColor);
+			const elem = $(ev.target);			
+			elem.css('background', inputColor);
 		}
-	}
-
-//Erase cell
-	function eraseCell(el) {
-		const elem = $(el.target);
-		var newColor = '#fff';
-		elem.css('background', newColor);
-		event.preventDefault();
 	}
 
 // Clean old grid and create e new
 	function makeGrid() {
 			canvas.empty(); // clean old grid
 
-			for (var i = 0; i < inputHeight; i++) {
+			for (let i = 0; i < inputHeight; i++) {
 				const row = $('<tr class="row"></tr>');
-				for (var j = 0; j < inputWidth; j++) {
+				for (let j = 0; j < inputWidth; j++) {
 					const cell = $('<td class="cell" id="'+i+','+j+'"></td>');
 					cell.on('mousedown', startPaint);
 					cell.on('mouseenter', paint);
-					cell.on('contextmenu',eraseCell);
+					cell.on('contextmenu', function(ev) {
+						ev.preventDefault();
+					});
 					row.append(cell);
 				}			
 				canvas.append(row);	
@@ -69,17 +79,14 @@ $(document).ready(function() {
 	}		
 
 //When size is submitted by the user, call makeGrid()
-	sizePicker.submit(function(event) {
+	sizePicker.submit(function(ev) {
 			/* Act on the event */
-			var sizePicked = sizePick();
+			let sizePicked = sizePick();
 			makeGrid();
-			event.preventDefault();
+			ev.preventDefault();
 		});
 
 //Listen event to stop paint
 	canvas.on('mouseup', stopPaint);
 
-//Show an initial grid
-	sizePick();
-	makeGrid();
 });
