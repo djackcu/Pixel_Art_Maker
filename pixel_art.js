@@ -7,15 +7,15 @@ $(document).ready(function() {
 		sizePicker = $("#sizePicker");
 
 //Show an initial grid
-	sizePick();
+	sizePick();  								//pick size to make grid
 	makeGrid();
 
-// Select color input
+// Pick color input
 	function colorPick(){
 		inputColor = $('#colorPicker').val();
 	}
 	
-// Select size input
+// Pick size input
 	function sizePick(){
 		inputHeight = $('#input_height').val();
 		inputWidth = $('#input_width').val();
@@ -23,24 +23,24 @@ $(document).ready(function() {
 
 //Start paint
 	function startPaint(ev) {
-		ev.preventDefault(); //prevent drag
-		const elem = $(ev.target);
+		ev.preventDefault(); 					//prevent drag
+			//Read mouse buttons
 		    switch (ev.which) {
-		        case 1:
+		        case 1: 						//pick left click and set color
 		        	isPaint = true;
 		            colorPick();		            
 		            break;
-		        case 2:
+		        case 2: 						//don't paint with central click
 		            isPaint = false;
 		            break;
-		        case 3:
+		        case 3: 						//pick right click and set white color
 		        	isPaint = true;
 		            inputColor= '#fff';
 		            break;
-		        default:
+		        default: 						//don't paint with another button
 		            isPaint = false;
 			};		
-		paint(ev);
+		paint(ev);								//start paint
 	}
 
 //Stop paint 
@@ -61,20 +61,20 @@ $(document).ready(function() {
 
 // Clean old grid and create e new
 	function makeGrid() {
-			canvas.empty(); // clean old grid
-
+			canvas.empty(); 					// clean old grid
+			//Creating a grid with nested loop
 			for (let i = 0; i < inputHeight; i++) {
-				const row = $('<tr class="row"></tr>');
+				const row = $('<tr class="row"></tr>');							//create a row element
 				for (let j = 0; j < inputWidth; j++) {
-					const cell = $('<td class="cell" id="'+i+','+j+'"></td>');
+					const cell = $('<td class="cell" id="'+i+','+j+'"></td>');	//create a cell element and events
 					cell.on('mousedown', startPaint);
 					cell.on('mouseenter', paint);
 					cell.on('contextmenu', function(ev) {
 						ev.preventDefault();
 					});
-					row.append(cell);
+					row.append(cell);											//insert cell element in row element
 				}			
-				canvas.append(row);	
+				canvas.append(row);												//insert row element with j cell elements in table
 			}
 	}		
 
