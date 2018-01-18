@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-color: #333;
+    background-color: #303030;
 }
 
 .nameMain {
@@ -13,14 +13,19 @@ body {
 
 .frameApp,
 #pixelCanvas {
-    border: 1px solid #000;
+    border: 2px solid #000;
     padding: 0;
+
 }
 
 #pixelCanvas {
     border-collapse: collapse;
     margin: 0 auto;
     background-color: #fff;
+
+    -webkit-box-shadow: 5px 5px 8px 0px rgba(199, 193, 199, 1);
+    -moz-box-shadow: 5px 5px 8px 0px rgba(199, 193, 199, 1);
+    box-shadow: 5px 5px 8px 0px rgba(199, 193, 199, 1);
 }
 .row,
 .cell {
@@ -57,12 +62,12 @@ body {
 .mainTool {
     text-align: left;
     width: 100%;
-    background-color: #444;
+    background-color: #282827;
     border-bottom: 1px solid #000;
 }
 .frameCanvas {    
     padding: 5px;
-    background-color: #777;    
+    background-color: #474748;    
 }
 .frameApp {
     border-radius: 5px;
@@ -70,4 +75,8 @@ body {
 }
 .foot {
     color:#ccc;
+}
+
+.cellGrid {
+    border: 1px solid #000;
 }

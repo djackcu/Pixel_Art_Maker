@@ -15,7 +15,7 @@
 		<div class="mainTool">
 			<div class="tool">						
 				<form id="sizePicker">
-					<span class="labels">Size</span>
+					<span class="labels">Choose Size</span>
 					<label class="labels" for="height">H:</label>
 					<input class="sizeVal" type="number" name="height" id="input_height" step="5" min="10" max="75" value="10">
 					<label class="labels" for="width">W:</label>
@@ -24,15 +24,18 @@
 				</form>
 			</div>	
 			<div class="tool">
-				<label class="labels" for="colorPicker">Color:</label>
+				<label class="labels" for="colorPicker">Choose Color:</label>
 				<input type="color" name="color" id="colorPicker">
+			</div>
+			<div class="tool">
+				<input type="checkbox" name="grid" id="grid"><label class="labels" for="grid">View grid</label>
 			</div>
 		</div>
 		<div class="frameCanvas">
 			<table id="pixelCanvas"></table>
 		</div>
 	</div>
-	<p class="foot">Instruction (Left click : Paint)  / (Right click : Erase)</p>
+	<p class="foot">Instructions (Left click : Paint)  / (Right click : Erase) (Hold to draw)</p>
 	<p class="foot">by Dieter Jackson</p>
 </body>
 </html>

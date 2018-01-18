@@ -4,7 +4,8 @@ $(document).ready(function() {
 		inputWidth,
 		isPaint = false;
 	const canvas = $("#pixelCanvas"),
-		sizePicker = $("#sizePicker");
+		sizePicker = $("#sizePicker"),
+		grid = $('#grid');
 
 //Show an initial grid
 	sizePick();  								//pick size to make grid
@@ -88,5 +89,15 @@ $(document).ready(function() {
 
 //Listen event to stop paint
 	canvas.on('mouseup', stopPaint);
+
+//View grid
+	grid.on('change', function(ev) {
+		let gridBox = ev.target;
+		if (gridBox.checked) {
+			$('.cell').addClass('cellGrid');
+		} else {
+			$('.cell').removeClass('cellGrid');
+		}
+	});
 
 });
